@@ -1,2 +1,4 @@
-.Debug
-.x64
+Debug/
+x64/
+Project1.vcxproj
+Project1.vcxproj.filters
