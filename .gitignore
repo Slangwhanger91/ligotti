@@ -1,2 +1,2 @@
-dir_to_ignore/Debug
-dir_to_ignore/x64
+.Debug
+.x64
