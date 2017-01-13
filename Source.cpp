@@ -1,5 +1,5 @@
+#include "FrameTicker.h"
 #include "Source.h"
-#include "MainLoop.h"
 
 int main(void){
 	GLFWwindow* window;
@@ -29,9 +29,8 @@ int main(void){
 		/* Poll for and process events */
 		glfwPollEvents();
 
-
-		MainLoop mainLoop;
-		mainLoop.mainLoop1();
+		FrameTick frameTick;
+		frameTick.tick();
 	}
 
 	glfwTerminate();
