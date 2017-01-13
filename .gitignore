@@ -2,3 +2,5 @@ Debug/
 x64/
 Project1.*
 .vs
+*.vcxproj
+*.vcxproj.filters
