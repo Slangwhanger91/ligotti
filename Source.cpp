@@ -24,6 +24,10 @@ int main(void)
 		-0.5f, -0.5f
 	};
 
+	GLuint vao;
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
 	GLuint vbo;
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -38,6 +42,7 @@ int main(void)
 		"}";
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertexShader, 1, &vertex_shader_src, NULL);
+	glCompileShader(vertexShader);
 	GLint test;
 	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &test);
 	if (test != GL_TRUE) {
@@ -56,6 +61,7 @@ int main(void)
 		"}";
 	GLuint fragShader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragShader, 1, &frag_shader_src, NULL);
+	glCompileShader(fragShader);
 	GLint test_frag;
 	glGetShaderiv(fragShader, GL_COMPILE_STATUS, &test_frag);
 	if (test_frag != GL_TRUE) {
@@ -72,12 +78,9 @@ int main(void)
 	glUseProgram(shaderProgram);
 
 	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(posAttrib);
+	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
-	GLuint vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
 
 	while (!glfwWindowShouldClose(window))
 	{
