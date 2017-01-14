@@ -19,10 +19,20 @@ int main(void) {
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 
+	float vertices[] = {
+		-0.05f,  0.5f, // Vertex 1 (X, Y)
+		-0.05f, -0.5f, // Vertex 2 (X, Y)
+		-0.8f, -0.5f,  // Vertex 3 (X, Y)
+
+		0.05f,  0.5f, // Vertex 1 (X, Y)
+		0.05f, -0.5f, // Vertex 2 (X, Y)
+		0.8f, -0.5f,  // Vertex 3 (X, Y)
+	};
+
 	GLuint vbo;
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	const GLchar* vertex_shader_src =
 		"#version 150\n"
@@ -49,7 +59,7 @@ int main(void) {
 		"void main()"
 		"{"
 		"	outColor = vec4(1.0, 1.0, 1.0, 1.0);"
-		"}";//               R    G    B  +Something...
+		"}";//               R    G    B    T
 	GLuint fragShader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragShader, 1, &frag_shader_src, NULL);
 	glCompileShader(fragShader);
